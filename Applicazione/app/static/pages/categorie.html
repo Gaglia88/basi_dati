@@ -1,0 +1,56 @@
+<div align="right">
+    <button class="btn btn-primary" onclick="addCat()">Aggiungi &nbsp;
+        <span data-feather="folder-plus"></span>
+    </button>
+</div>
+<br/>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered" id="tblCat">
+        <thead>
+        <tr>
+            <th style="text-align: center">Nome</th>
+            <th style="text-align: center">Descrizione</th>
+            <th style="text-align: center; width: 1%;">&nbsp;</th>
+            <th style="text-align: center; width: 1%;">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Nuovo utente -->
+<div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="addCatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Aggiungi categoria</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome">
+                    </div>
+					<div class="mb-3">
+                        <label for="nome" class="form-label">Descrizione</label>
+                        <input type="text" class="form-control" id="descrizione">
+                    </div>
+                    <input type="hidden" id="catid" value="">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" onclick="processCatForm()">Aggiungi/Edita</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    loadCats();
+  });
+</script>

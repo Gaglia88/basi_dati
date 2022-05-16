@@ -1,0 +1,154 @@
+<div class="container" id="mostra_ticket" style="visibility:hidden; display:none">
+	<div class="row">
+		<div class="col">
+			<span id="descr"></span>
+			<button class="btn btn-danger" style="visibility:hidden; display:none" id="carico" onclick="assegnaTicket()">Prendi in carico</button>
+			<input type="hidden" id="tid" value="" />
+			<hr />
+		</div>
+	</div>
+	
+	<div id="risposte">
+	</div>
+	
+	<br />
+	
+	<div class="row" id="nuovo_messaggio">
+		<div class="col" style="text-align:center">
+			<div class="card">
+				<div class="card-body">
+					<h5><b>Nuovo messaggio</b></h5>
+					<textarea id="risposta" class="form-control"></textarea>
+					<br />
+					<div align="right">
+						<div id="chiuditicket" style="visibility:hidden; display:none">
+							<input type="checkbox" id="chiudi" /> Chiudi il ticket<br /> 
+						</div>
+						<button class="btn btn-primary" onclick="addMessage()">Invia</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="ticket_cliente" style="visibility:hidden; display:none">
+	<div align="right">
+		<button class="btn btn-primary" onclick="addTicket()">Nuovo ticket &nbsp;
+			<span data-feather="file-plus"></span>
+		</button>
+	</div>
+	<br/>
+	<h1>I tuoi ticket</h1>
+	<div align="right">
+		<b>Legenda</b>:
+		<span style="color:#ff0000" data-feather="sun" title="Aperto"></span> aperti,
+		<span style="color:#00ff00" data-feather="check-square" title="Chiuso"></span> risolti,
+		<span style="color:#ff8000" data-feather="refresh-ccw" title="In lavorazione"></span> in lavorazione.
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered" id="tblTicketCliente">
+			<thead>
+			<tr>
+				<th style="text-align: center" width="15%">Data</th>
+				<th style="text-align: center" width="10%">Categoria</th>
+				<th style="text-align: center" width="70%">Titolo</th>
+				<th style="text-align: center; width: 1%;">&nbsp;</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div id="ticket_tecnico" style="visibility:hidden; display:none">
+	<h1>Ticket aperti</h1>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered" id="tblTicketAperti">
+			<thead>
+			<tr>
+				<th style="text-align: center" width="15%">Data</th>
+				<th style="text-align: center" width="10%">Categoria</th>
+				<th style="text-align: center" width="20%">Utente</th>
+				<th style="text-align: center" width="70%">Titolo</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	
+	<h1>Ticket presi in carico</h1>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered" id="tblTicketInCarico">
+			<thead>
+			<tr>
+				<th style="text-align: center" width="15%">Data</th>
+				<th style="text-align: center" width="10%">Categoria</th>
+				<th style="text-align: center" width="20%">Utente</th>
+				<th style="text-align: center" width="50%">Titolo</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	
+	<h1>Ticket risolti</h1>
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered" id="tblTicketRisolti">
+			<thead>
+			<tr>
+				<th style="text-align: center" width="15%">Data</th>
+				<th style="text-align: center" width="10%">Categoria</th>
+				<th style="text-align: center" width="20%">Utente</th>
+				<th style="text-align: center" width="70%">Titolo</th>
+			</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Nuovo ticket -->
+<div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="addTicketLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Nuovo ticket</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+					<div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select id="categoria" class="form-select"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Titolo</label>
+                        <input type="text" class="form-control" id="titolo">
+                    </div>
+					<div class="mb-3" align="center">
+						Richiesta
+					</div>
+					<div class="mb-3">
+						<textarea id="testo" class="form-control"></textarea>
+					</div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" onclick="processTicketForm()">Aggiungi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    loadTickets();
+	loadCat();
+  });
+</script>
